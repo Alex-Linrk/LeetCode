@@ -18,6 +18,27 @@ import kotlin.math.max
 ]
  */
 class Solution131 {
+    fun newPartition(s: String): List<List<String>> {
+        var start = 1
+        var newList = mutableListOf<List<String>>()
+        if (start == s.length) return mutableListOf(listOf(s))
+        while (start < s.length) {
+            val begin = s.subSequence(0, start).toString()
+            if (isSummery(begin)) {
+                val end = s.subSequence(start, s.length).toString()
+                val result = newPartition(end)
+                result.forEach { item ->
+                    newList.add(listOf(begin, *item.toTypedArray()))
+                }
+            }
+            start++
+        }
+        if (isSummery(s)) {
+            newList.add(listOf(s))
+        }
+        return newList
+    }
+
     fun partition(s: String): List<List<String>> {
         var res = spliteMoreOne(s)
         if (s.length > 1)
@@ -84,5 +105,8 @@ class Solution131 {
 }
 
 fun main() {
-    println(Solution131().partition("amanaplanacanalpanama"))
+    val start = System.currentTimeMillis()
+    println(Solution131().newPartition("amanaplanacanalpanama"))
+    println(System.currentTimeMillis() - start)
+//    println(Solution131().newPartition("amanaplanacanalpanama"))
 }
