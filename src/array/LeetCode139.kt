@@ -1,5 +1,7 @@
 package array
 
+import java.util.*
+
 /**
  *给定一个非空字符串 s 和一个包含非空单词列表的字典 wordDict，判定 s 是否可以被空格拆分为一个或多个在字典中出现的单词。
 
@@ -36,6 +38,7 @@ class Solution139 {
             for (y in 0 until x) {
                 if (meno[y] && wordDict.contains(s.substring(y, x))) {
                     meno[x] = true
+                    println(meno.toList())
                     break
                 }
             }
@@ -47,8 +50,8 @@ class Solution139 {
 fun main() {
     println(
         Solution139().wordBreak(
-            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
-            listOf("a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa", "aaaaaaa", "aaaaaaaa", "aaaaaaaaa", "aaaaaaaaaa")
+            "pineapplepenapple",
+            listOf("apple", "pen", "applepen", "pine", "pineapple")
         )
     )
 }
